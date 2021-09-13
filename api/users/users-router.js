@@ -25,9 +25,10 @@ const User = require('../users/users-model')
   }
  */
 
-  router.get('/', restricted, (req, res, next) => {
+  router.get('/', restricted, async (req, res, next) => {
     try {
-      User.find()
+      const users = await User.find()
+      res.json(users)
     } catch (err) {
       next(err)
     }
