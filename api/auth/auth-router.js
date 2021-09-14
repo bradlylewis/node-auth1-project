@@ -3,7 +3,7 @@ const User = require('../users/users-model')
 const bcrypt = require('bcryptjs')
 
 const {
-  restricted,
+
   checkUsernameFree,
   checkUsernameExists,
   checkPasswordLength

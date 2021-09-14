@@ -16,16 +16,16 @@ Your instructor should have communicated which method to use for this project du
 
 Write the following user access functions inside `api/users/users-model.js`:
 
-- [ ] `find`
-- [ ] `findBy`
-- [ ] `findById`
-- [ ] `add`
+- [√] `find`
+- [√] `findBy`
+- [√] `findById`
+- [√] `add`
 
 #### 2B - Middleware Functions
 
 Write the following auth middlewares inside `api/auth/auth-middleware.js`:
 
-- [ ] `restricted`
+- [√] `restricted`
 - [√] `checkUsernameFree`
 - [√] `checkPasswordLength`
 - [√] `checkUsernameExists`

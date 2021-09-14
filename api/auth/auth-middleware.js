@@ -1,13 +1,5 @@
 const User = require('../users/users-model')
 
-/*
-  If the user does not have a session saved in the server
-
-  status 401
-  {
-    "message": "You shall not pass!"
-  }
-*/
 function restricted(req, res, next) {
   if (req.session.user) {
     next()
@@ -36,6 +28,7 @@ async function checkUsernameExists(req, res, next) {
   try {
     const users = await User.findBy({ username: req.body.username })
     if (users.length) {
+      req.user = users[0]
       next()
     }
     else {
