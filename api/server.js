@@ -3,6 +3,9 @@ const helmet = require("helmet");
 const cors = require("cors");
 const UsersRouter = require("./users/users-router")
 const AuthRouter = require("./auth/auth-router")
+const session = require('express-session')
+const Store = require('connect-session-knex')(session)
+const knex = require('../data/db-config')
 
 
 /**
@@ -19,6 +22,26 @@ const AuthRouter = require("./auth/auth-router")
  */
 
 const server = express();
+
+server.use(session({
+  name: 'chocolatechip',
+  secret: 'shh',
+  saveUninitialized: false,
+  resave: false,
+  store: new Store({
+    knex,
+    createTable: true,
+    clearInterval: 1000 * 60 * 12,
+    tablename: 'sessions',
+    sidfieldname: 'sid',
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 12,
+    secure: false,
+    httpOnly: true,
+    // sameSite: 'none'
+  }
+}))
 
 server.use(helmet());
 server.use(express.json());
